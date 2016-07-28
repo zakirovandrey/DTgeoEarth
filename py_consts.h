@@ -14,10 +14,10 @@ typedef float ftype;
 //#define ANISO_TR 2
 #define CUDA_TEX_INTERP
 
-#define NDev 1
+#define NDev 2
 #define GPUDIRECT_RDMA
 
-//#define DROP_DATA
+#define DROP_DATA
 //#define USE_AIVLIB_MODEL
 //#define MPI_ON
 //#define MPI_TEST
@@ -26,7 +26,7 @@ typedef float ftype;
 #define USE_WINDOW
 #define COFFS_DEFAULT
 //#define TIMERS_ON
-//#define SWAP_DATA
+#define SWAP_DATA
 //#define CLICK_BOOM
 #define SHARED_SIZE 7
 #define SPLIT_ZFORM
@@ -55,8 +55,10 @@ const int GridNz=gridNz;
 const int GridNz=NV;
 #endif
 
-// best formula Nv=2*Nzw-14 and Nzw=32*n
-const int Nzw=512;//128;
+// best formula:
+// Nzw=32*n and ( Nv = Nzw*2*k -14*k or Nv = Nzw*(2*k+1) - 14*k - 7)
+// e.g. Nv=Nzw-7; 2*Nzw-14; 3*Nzw-21; 4*Nzw-28; 5*Nzw-35; 6*Nzw-42; 7*Nzw-49; .....
+const int Nzw=768;//128;
 
 const int Npmlx=2*1;//2*24;
 const int Npmly=2*0;//24;
