@@ -138,8 +138,8 @@ __device__ __noinline__ bool inSF(const int _s, const int _a, const int _v) {
   ftype s = reals*0.5*dx, a=(_a)*0.5*dy, v=_v*0.5*dz;
   //if(_v==128) printf("checking inSF s/dx/NDT=%d, a/sy/NDT=%d\n", int(s/dx/NDT), int(a/dy/NDT));
 
-  return (s-src.srcXs)*(s-src.srcXs)+(a-src.srcXa)*(a-src.srcXa)+(v-src.srcXv)*(v-src.srcXv)<=src.sphR*src.sphR;
-//  return (s>src.BoxMs && s<src.BoxPs && a>src.BoxMa && a<src.BoxPa && v>src.BoxMv && v<src.BoxPv); 
+//  return (s-src.srcXs)*(s-src.srcXs)+(a-src.srcXa)*(a-src.srcXa)+(v-src.srcXv)*(v-src.srcXv)<=src.sphR*src.sphR;
+  return (s>src.BoxMs && s<src.BoxPs && a>src.BoxMa && a<src.BoxPa && v>src.BoxMv && v<src.BoxPv); 
 }
 
 
