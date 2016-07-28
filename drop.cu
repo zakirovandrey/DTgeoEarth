@@ -41,7 +41,7 @@ struct SeismoDrops {
     for(int ifld=0; ifld<9; ifld++) file[ifld] = new MPI_File; 
     MPI_Barrier(MPI_COMM_WORLD);
     #endif
-    FldDrop[0]=1; FldDrop[1]=0; FldDrop[2]=0; // Vxyz
+    FldDrop[0]=0; FldDrop[1]=1; FldDrop[2]=0; // Vxyz
     FldDrop[3]=0; FldDrop[4]=0; FldDrop[5]=0; // Sxyz
     FldDrop[6]=0; FldDrop[7]=0; FldDrop[8]=0; // Txyz
   }
@@ -77,6 +77,8 @@ struct SeismoDrops {
   void drop(const int xstart, const int xend, const DiamondRag* data, const int it) {
     #ifdef DROP_DATA
     DEBUG_MPI(("drop data node=%d subnode=%d it=%d\n",node,subnode,it));
+    printf("drop data node=%d subnode=%d it=%d\n",node,subnode,it);
+    fflush(stdout);
     for(int ifld=0; ifld<9; ifld++) {
       if(FldDrop[ifld]==0) continue;
       size_t ptr_shift=0;
@@ -121,7 +123,7 @@ struct SeismoDrops {
         MPI_Offset offset    = head_offset+node_shift*regNy*regNz*sizeof(ftype);
         offset   += subnode*Na*regNz*sizeof(ftype);
         MPI_File_seek(*file[ifld], offset, MPI_SEEK_SET);
-        //printf("node=%d subnode=%d x=%d offset=%ld\n", node,subnode, x, offset);
+        //printf("saving data node=%d subnode=%d x=%d offset=%ld\n", node,subnode, x, offset);
         for(int y=0; y<Na; y++) {
           ftype val[Nv];
           switch(ifld){
@@ -142,6 +144,8 @@ struct SeismoDrops {
       #endif//MPI_ON
     }
     DEBUG_MPI(("end of drop data node=%d subnode=%d it=%d\n",node,subnode,it));
+    printf("end of drop data node=%d subnode=%d it=%d\n",node,subnode,it);
+    fflush(stdout);
     #endif//DROP_DATA
   }
 };

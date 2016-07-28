@@ -462,6 +462,7 @@ int calcStep(){
   MPI_Reduce(&calcTime, &AllCalcTime, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
   if(window.node==0 && 0) printf("===(%3d)===AllCalcTime %9.09f sec |rate %9.09f GYee_cells/sec\n", parsHost.iStep, AllCalcTime*1e-3, 1.e-9*yee_cells/(AllCalcTime*1.e-3) );
   #endif
+  fflush(stdout);
   parsHost.iStep++;
   copy2dev(parsHost, pars);
   return 0; 

@@ -440,6 +440,7 @@ void GeoParamsHost::set(){
            size_xzPMLs*NStripe[NDev-1]/(1024.*1024.), 
            szPMLa                      /(1024.*1024.)  );
   }
+  fflush(stdout);
   size_t freemem[NDev], totalmem[NDev];
   for(int idev=0; idev<NDev; idev++) {
     CHECK_ERROR( cudaSetDevice(idev) );
@@ -467,6 +468,7 @@ void GeoParamsHost::set(){
     printf("Node/subnode %3d/%d : device %d: GPU memory free %.2fM of %.2fM\n", node, subnode, idev, freemem[idev]/(1024.*1024.), totalmem[idev]/(1024.*1024.) );
   }
   CHECK_ERROR( cudaSetDevice(0) );
+  fflush(stdout);
 
   const int Nn = mapNodeSize[node];
   #if 1//USE_WINDOW
@@ -494,6 +496,7 @@ void GeoParamsHost::set(){
   for(int i=0; i<node; i++) dataInd -= mapNodeSize[i]*Na   ; dataInd +=node*Ns*Na;
   for(int i=0; i<node; i++) dataPMLa-= mapNodeSize[i]*Npmly; dataPMLa+=node*Ns*Npmly;
   if (node==1) printf("now data points to %p\n", data);
+  fflush(stdout);
   #else
   data     = new DiamondRag   [Nn*Na   ]; memset(data    , 0, Nn*Na   *sizeof(DiamondRag   ));
   dataPMLa = new DiamondRagPML[Nn*Npmly]; memset(dataPMLa, 0, Nn*Npmly*sizeof(DiamondRagPML));
