@@ -14,7 +14,7 @@ ARCH := sm_35
 else ifeq ($(COMP),ion)
 ARCH := sm_50
 else ifeq ($(COMP),supermic)
-ARCH := sm_52
+ARCH := sm_61
 else
 ARCH := sm_35
 endif
@@ -41,7 +41,7 @@ NVCC := /home/zakirov/progs/cuda-8.0rc/bin/nvcc
 else ifeq ($(COMP),ion)
 NVCC := /mnt/D/home/zakirov/cuda-7.5/bin/nvcc
 else ifeq ($(COMP),supermic)
-NVCC := /usr/local/cuda-7.5/bin/nvcc
+NVCC := /usr/local/cuda/bin/nvcc
 else
 NVCC := nvcc
 endif 
@@ -55,7 +55,7 @@ CDEFS := $(foreach f, $(ALL_DEFS), $(if $($f),-D$f=$($f)))
 NVCCFLAGS   := -ccbin $(GCC) -O3 -Xptxas="-v" #-Xcudafe "--diag_suppress=declared_but_not_referenced,set_but_not_used"
 CCFLAGS     := -O3 -fopenmp -fPIC $(CDEFS) 
 NVCCLDFLAGS :=
-LDFLAGS     := -L./ -L/usr/mpi/gcc/mvapich2-1.5.1/lib/ -L/common/cuda-6.5/lib64/ -L/home/zakirov/cuda-7.5/lib64
+LDFLAGS     := -L./ -L/home/zakirov/cuda/lib64 -L/usr/mpi/gcc/mvapich2-1.5.1/lib/ -L/common/cuda-6.5/lib64/ -L/home/zakirov/cuda-7.5/lib64
 
 # Extra user flags
 EXTRA_NVCCFLAGS   ?=

@@ -27,7 +27,8 @@ FILE* gpPipe=0;
 
 //#include <string.h>
 #include <fcntl.h>
-//#include <unistd.h>
+#include <unistd.h>
+#include <sys/types.h>
 //#include <time.h>
 
 #include <malloc.h>
