@@ -473,6 +473,7 @@ void GeoParamsHost::set(){
   const int Nn = mapNodeSize[node];
   #if 1//USE_WINDOW
   printf("Allocating RAM memory on node %d: %g Gb\n", node, (Nn*Na*sizeof(DiamondRag)+Nn*Na*sizeof(ModelRag)+Nn*Npmly*sizeof(DiamondRagPML)+Npmlx*Na*sizeof(DiamondRagPML))/(1024.*1024.*1024.));
+  fflush(stdout);
   #if USE_UVM==2
   #ifdef SWAP_DATA
   char swapdata[256]; sprintf(swapdata, "%s/swapdata.%d.%d", swap_dir->c_str(), node,subnode);
