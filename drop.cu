@@ -129,7 +129,7 @@ struct SeismoDrops {
             case 1: for(int z=0; z<Nv; z++) val[z] = data[ptr_shift+y].Vi[0].trifld.one[z];   break;
             case 2: for(int z=0; z<Nv; z++) val[z] = data[ptr_shift+y].Vi[0].trifld.two[z].y; break;
             case 3: for(int z=0; z<Nv; z++) val[z] = data[ptr_shift+y].Si[0].duofld[0][z].x; break;
-            case 4: for(int z=0; z<Nv; z++) val[z] = data[ptr_shift+y].Si[0].duofld[0][z].y  break;
+            case 4: for(int z=0; z<Nv; z++) val[z] = data[ptr_shift+y].Si[0].duofld[0][z].y; break;
             case 5: for(int z=0; z<Nv; z++) val[z] = data[ptr_shift+y].Si[0].duofld[1][z].x; break;
             case 6: for(int z=0; z<Nv; z++) val[z] = data[ptr_shift+y].Si[0].duofld[2][z].y; break;
             case 7: for(int z=0; z<Nv; z++) val[z] = data[ptr_shift+y].Si[0].duofld[1][z].y; break;
